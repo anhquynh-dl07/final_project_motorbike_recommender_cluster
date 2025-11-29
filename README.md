@@ -22,11 +22,15 @@ Dữ liệu về xe máy được thu thập trên nền tảng Chợ Tốt, tr�
 │   ├── teencode.txt  
 │   ├── vietnamese-stopwords.txt  
 │   └── wrong-word.txt  
-├── README_project_2.md                 # hướng dẫn
-├── requirements.txt                    # điều kiện cài đặt
-├── slide  
-|    └── Project 2_Bike Recommendation System and Market Segment.pptx
-└── topic_RecommenderSystem_MarketSegmentation.pdf
+├── GUI                                 # giao diện cho người dùng cuối  
+│   ├── data_motobikes.xlsx  
+│   ├── project2_git_4.py               # file app streamlit giao diện cho người dùng  
+│   ├── README.md                       # file hướng dẫn  
+│   ├── requirements.txt                # các gói thư viện cần có 
+│   └── [các file bổ trợ khác]  
+├── README.md                           # hướng dẫn
+└── slide  
+    └── Final project_Bike Recommendation System and Market Segment.pptx
 
 ## **Dữ liệu**
 
@@ -90,11 +94,13 @@ Sắp xếp và lấy ra 5 xe gợi ý phù hợp nhất.
 ### Tạo ma trận đặc trưng tổng hợp (text + numeric)  
 Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng số:
 **Text features**:  
+- Sử dụng các đặc trưng: 'title', 'address', 'description', 'brand', 'model', 'condition', 'origin', 'warranty_policy' và các đặc trưng mới: 'price' → 'price_range', 'engine_capacity' → 'weight_class'  
 - Tokenize văn bản đã làm sạch  
 - Tạo dictionary và corpus  
 - TF-IDF để biểu diễn vector văn bản  
 
 **Numeric features**:  
+- ử dụng các đặc trưng: 'price', 'mileage_km', 'min_price', 'max_price', 'registration_year', bike_type', 'engine_capacity', 'registration_year' -> 'age', 'brand_meanprice' (giá theo brand)  
 - Các cột số được chuẩn hóa (StandardScaler)  
 - Ghép nối vector TF-IDF với vector numeric đã scale để tạo feature vector cuối cùng của mỗi xe  
 - Tính độ tương đồng bằng Cosine Similarity  
@@ -103,7 +109,7 @@ Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng 
 **Cosine similarity** được chọn vì:  
 - Phù hợp cho dữ liệu sparse (TF-IDF)  
 - Ổn định khi ghép thêm numeric features  
-- Kết quả sát hơn về mặt “tính tương tự” so với Gensim dựa trên word vectors.  
+- kết quả sát hơn về mặt “tính tương tự” so với Gensim dựa trên word vectors.  
 
 **Trường hợp 1**: gợi ý xe theo id sản phẩm  
 - Người dùng chọn 1 xe (biết “id”)  
@@ -124,7 +130,7 @@ Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng 
 Import/ tải các thư viện cần thiết
 
 #### Xử lý dữ liệu  
-Các bước xử lý dữ liệu gồm (copy lai ở bài 1)
+Các bước xử lý dữ liệu gồm 
 - Loại bỏ bỏ các cột: "id","Tiêu đề","Địa chỉ", "Href", "Tình trạng", "Chính sách bảo hành", "Trọng lượng"
 - Đổi tên các cột để đơn giản hoá tên các đặc trưng:
   - 'Giá': 'price',
@@ -154,28 +160,27 @@ Các bước xử lý dữ liệu gồm (copy lai ở bài 1)
 #### Xử lý biến đầu ra
 - Chuyển hoá log biến "price"
 
-#### Phân loại dữ liệu
+#### Feature Selection
 Trong mô hình này, nhóm chỉ chọn các biến numeric liên tục (continuous numeric) cho phân cụm.  Mục tiêu của clustering ở đây là tách các xe thành các nhóm dựa trên đặc tính định lượng: giá, tuổi xe, số km đã đi, vì:
 
-Các thuật toán phân cụm phổ biến dựa trên khoảng cách
-Các mô hình phân cụm KMeans, Gaussian Mixture, Bisecting KMeans… đều tính khoảng cách (Euclidean, squared Euclidean, Mahalanobis…) giữa các điểm dữ liệu. Khoảng cách này chỉ có ý nghĩa với các biến numeric liên tục, vì phép trừ, bình phương và căn bậc hai cần giá trị đo lường liên tục.
-Tránh lỗi khi dùng biến rời rạc hoặc categorical: Biến rời rạc hoặc categorical nếu dùng trực tiếp sẽ làm khoảng cách Euclidean không hợp lý:
-OneHot encoding => dữ liệu sparse, tăng chiều không cần thiết.
-Label encoding => khoảng cách giữa nhãn không mang ý nghĩa (Honda = 0, Yamaha = 1 => khoảng cách 1 không đại diện cho sự khác biệt thực tế).
-Chuẩn hóa và cân bằng scale
-Biến numeric liên tục dễ scale / normalize (StandardScaler, MinMaxScaler), đảm bảo mỗi feature cùng trọng số khi tính khoảng cách.
-Categorical hoặc rời rạc khó scale tự nhiên, có thể chi phối clustering nếu không xử lý đúng.
-Giữ kết quả phân cụm đơn giản, trực quan
-Sử dụng numeric liên tục giúp cluster có ý nghĩa về đặc tính định lượng:
-Nếu dùng biến rời rạc nhiều => cluster sẽ bị ảnh hưởng bởi cách encode, khó giải thích kết quả.
+- Các thuật toán phân cụm phổ biến dựa trên khoảng cách: Các mô hình phân cụm KMeans, Gaussian Mixture, Bisecting KMeans… đều tính khoảng cách (Euclidean, squared Euclidean, Mahalanobis…) giữa các điểm dữ liệu. Khoảng cách này chỉ có ý nghĩa với các biến numeric liên tục, vì phép trừ, bình phương và căn bậc hai cần giá trị đo lường liên tục.
+- Tránh lỗi khi dùng biến rời rạc hoặc categorical: Biến rời rạc hoặc categorical nếu dùng trực tiếp sẽ làm khoảng cách Euclidean không hợp lý:
++ OneHot encoding => dữ liệu sparse, tăng chiều không cần thiết.
++ Label encoding => khoảng cách giữa nhãn không mang ý nghĩa (Honda = 0, Yamaha = 1 => khoảng cách 1 không đại diện cho sự khác biệt thực tế).
+- Chuẩn hóa và cân bằng scale
++ Biến numeric liên tục dễ scale / normalize (StandardScaler, MinMaxScaler), đảm bảo mỗi feature cùng trọng số khi tính khoảng cách.
++ Categorical hoặc rời rạc khó scale tự nhiên, có thể chi phối clustering nếu không xử lý đúng.
+- Giữ kết quả phân cụm đơn giản, trực quan
++ Sử dụng numeric liên tục giúp cluster có ý nghĩa về đặc tính định lượng:
++ Nếu dùng biến rời rạc nhiều => cluster sẽ bị ảnh hưởng bởi cách encode, khó giải thích kết quả.
 
 => Phân cụm (Clustering) và hồi quy (Regression) có mục tiêu khác nhau:
-Clustering chỉ sử dụng các biến numeric liên tục (giá, tuổi xe, số km đã đi) để nhóm các xe dựa trên các đặc tính định lượng. Điều này giúp khoảng cách giữa các điểm có ý nghĩa, kết quả phân nhóm trực quan và dễ giải thích.
-Price Prediction (Hồi quy giá) sử dụng cả biến numeric và categorical (ví dụ: phân khúc, thương hiệu, xuất xứ) để mô hình nắm bắt tất cả các yếu tố ảnh hưởng đến giá, từ đó đưa ra dự đoán chính xác.
+- Clustering chỉ sử dụng các biến numeric liên tục (giá, tuổi xe, số km đã đi) để nhóm các xe dựa trên các đặc tính định lượng. Điều này giúp khoảng cách giữa các điểm có ý nghĩa, kết quả phân nhóm trực quan và dễ giải thích.
+- Price Prediction (Hồi quy giá) sử dụng cả biến numeric và categorical (ví dụ: phân khúc, thương hiệu, xuất xứ) để mô hình nắm bắt tất cả các yếu tố ảnh hưởng đến giá, từ đó đưa ra dự đoán chính xác.
 
 Do đó, việc clustering chỉ dùng một số biến numeric nhưng hồi quy dùng đầy đủ thông tin là hợp lý và không mâu thuẫn.
 
-Các cột thông tin sử dụng để phân cụm:
+=> KẾT LUẬN: Các cột thông tin sử dụng để phân cụm:
 
 num\_cols = \['age','mileage\_km','min\_price','max\_price','log_price']
 
@@ -183,7 +188,8 @@ num\_cols = \['age','mileage\_km','min\_price','max\_price','log_price']
 Chuẩn hóa dữ liệu bằng Standard Scaler
 
 ### Xây dựng mô hình phân cụm
-Sử dụng Kmeans, GMM, AggomerativeClustering cho môi trường ML truyền thống và Kmeans, GMM, Bisecting Kmeans cho pyspark
+Sử dụng Kmeans, GMM, AggomerativeClustering cho môi trường ML truyền thống và Kmeans, GMM, Bisecting Kmeans cho pyspark.
+Mô hình Kmeans trên ML truyền thống cho kết quả hợp lý nhất với số cụm là 3.
 
 ### Kết quả
 Phân loại phân khúc xe:
