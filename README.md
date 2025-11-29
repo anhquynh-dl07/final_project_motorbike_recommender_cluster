@@ -1,4 +1,4 @@
-# Motorbike Recommendation System and Market Segmentation by Clustering
+# Hệ thống gợi ý xe máy tương tự và phân cụm xe máy
 
 ## **Giới thiệu mục tiêu**
 
@@ -26,7 +26,7 @@ Dữ liệu về xe máy được thu thập trên nền tảng Chợ Tốt, tr�
 │   ├── data_motobikes.xlsx  
 │   ├── project2_git_4.py               # file app streamlit giao diện cho người dùng  
 │   ├── README.md                       # file hướng dẫn  
-│   ├── requirements.txt                # các gói thư viện cần có 
+│   ├── requirements.txt                # các gói thư viện cần có  
 │   └── [các file bổ trợ khác]  
 ├── README.md                           # hướng dẫn
 └── slide  
