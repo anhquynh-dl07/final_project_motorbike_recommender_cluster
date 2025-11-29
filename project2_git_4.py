@@ -904,6 +904,7 @@ Phần số: sử dụng các đặc trưng: 'price', 'mileage_km', 'min_price',
     st.write('Kết quả độ tương đồng trung bình sau khi cải thiện')
     st.image('sim_score_compare.jpg')
 
+    st.write('Cả 2 trường hợp đều cho sim score khá tốt, tốt hơn nhiều so với khi chỉ sử dụng text để gợi ý đối với trường hợp gợi ý xe dựa trên xe có sẵn')
 
     yellow_pad_header('Mô hình phân khúc xe máy')
     
