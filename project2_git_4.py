@@ -1087,7 +1087,7 @@ elif page == "Gợi ý mẫu xe tương tự":
             st.markdown("#### 🔶 Các mẫu tương tự")
             for _, row in df_top.iterrows():
                 display_bike_card(row)
-                st.caption(f"Similarity score: {row['similarity_score']:.3f}")
+                # st.caption(f"Similarity score: {row['similarity_score']:.3f}")
 
         
     # theo từ khóa
@@ -1127,7 +1127,7 @@ elif page == "Gợi ý mẫu xe tương tự":
         # 8) Display
         for _, row in res_df.iterrows():
             display_bike_card(row)
-            st.caption(f"Similarity score: {row['similarity_score']:.3f}")
+            # st.caption(f"Similarity score: {row['similarity_score']:.3f}")
 
 
 elif page == "Xác định phân khúc xe máy":
