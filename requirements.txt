@@ -9,3 +9,4 @@ scipy==1.15.3
 seaborn==0.13.2
 streamlit==1.51.0
 underthesea==8.3.0
+openpyxl==3.1.5
