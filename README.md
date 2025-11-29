@@ -103,7 +103,7 @@ Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng 
 **Cosine similarity** được chọn vì:  
 - Phù hợp cho dữ liệu sparse (TF-IDF)  
 - Ổn định khi ghép thêm numeric features  
-- kết quả sát hơn về mặt “tính tương tự” so với Gensim dựa trên word vectors.  
+- Kết quả sát hơn về mặt “tính tương tự” so với Gensim dựa trên word vectors.  
 
 **Trường hợp 1**: gợi ý xe theo id sản phẩm  
 - Người dùng chọn 1 xe (biết “id”)  
