@@ -10,8 +10,8 @@ Dữ liệu về xe máy được thu thập trên nền tảng Chợ Tốt, tr�
 
 ## **Cấu trúc dự án**
 ├── cau_1_gensim_cosine.ipynb            # Hệ thống gợi ý xe máy  
-├── cau_2_cluster_pyspark.ipynb          # Phân khúc bằng thuật toán phân cụm trên pyspark  
-├── cau_2_cluster_python.ipynb           # Phân khúc bằng thuật toán phân cụm trên pyspark  
+├── cau_2_cluster_pyspark.ipynb          # Phân khúc bằng thuật phân cụm trên pyspark  
+├── cau_2_cluster_python.ipynb           # Phân khúc bằng thuật phân cụm trên sklearn  
 ├── data                                 # dữ liệu được cung cấp  
 │   ├── data_motobikes.xlsx  
 │   ├── Mô tả bộ dữ liệu Chợ Tốt.docx  
