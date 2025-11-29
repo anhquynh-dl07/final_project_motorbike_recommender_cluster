@@ -87,6 +87,37 @@ Sắp xếp và lấy ra 5 xe gợi ý phù hợp nhất.
 - Tính độ tương đồng trung bình giữa 5 mẫu gợi ý cho một mẫu, sau đó áp dụng cho 10 cụm từ trên và tính trung bình.
 - So sáng độ tương đồng trung bình giữa gensim và cosine similarity. Kết quả cho thấy cosine similarity cho độ tương đồng trung bình cao hơn gensim. Các kết quả gợi ý cũng sát hơn so với gensim về mặt semantic.
 
+### Tạo ma trận đặc trưng tổng hợp (text + numeric)  
+Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng số:
+**Text features**:  
+- Tokenize văn bản đã làm sạch  
+- Tạo dictionary và corpus  
+- TF-IDF để biểu diễn vector văn bản  
+
+**Numeric features**:  
+- Các cột số được chuẩn hóa (StandardScaler)  
+- Ghép nối vector TF-IDF với vector numeric đã scale để tạo feature vector cuối cùng của mỗi xe  
+- Tính độ tương đồng bằng Cosine Similarity  
+- Từ feature vector tổng hợp (text + numeric), tính ma trận cosine similarity giữa tất cả các xe.
+
+**Cosine similarity** được chọn vì:  
+- Phù hợp cho dữ liệu sparse (TF-IDF)  
+- Ổn định khi ghép thêm numeric features  
+- kết quả sát hơn về mặt “tính tương tự” so với Gensim dựa trên word vectors.  
+
+**Trường hợp 1**: gợi ý xe theo id sản phẩm  
+- Người dùng chọn 1 xe (biết “id”)  
+- Lấy vector của xe đó → tính similarity với toàn bộ xe  
+- Sắp xếp theo điểm cosine similarity giảm dần  
+- Trả về 5 xe tương tự nhất, loại bỏ chính xe đang chọn  
+
+**Trường hợp 2**: gợi ý xe theo từ khóa tìm kiếm  
+- Làm sạch text như pipeline chính  
+- Chuyển từ khóa thành vector TF-IDF  
+- Kết hợp với vector numeric mặc định (giá trị 0)  
+- Tính cosine similarity giữa query và toàn bộ xe  
+- Lấy ra 5 xe phù hợp nhất theo điểm tương đồng
+
 ## **Market segmentation by Clustering (phân khúc xe máy bằng thuật toán phân cụm)**
 ### 1. Môi trường machine learning truyền thống (sklearn)
 #### Import thư viện
