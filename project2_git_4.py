@@ -898,11 +898,11 @@ elif page == 'Đánh giá mô hình và Báo cáo':
     st.markdown('#### 3. Cải thiện mô hình Cosine similarity')
     st.write('''
 Chúng tôi cải thiện mô hình gợi ý bằng Cosine similarity bằng cách tạo mỗi xe thành vector dựa trên sự kết hợp cả đặc trưng dạng chữ và dạng số.  
-Phần chữ: sử dụng các đặc trưng: 'title', 'address', 'description',  'brand', 'model', 'condition', 'origin', 'warranty_policy' và các đặc trưng mới:  ‘price’ -> ‘price_range’, ‘engine_capacity’ -> ‘weight_class’
+Phần chữ: sử dụng các đặc trưng: 'title', 'address', 'description',  'brand', 'model', 'condition', 'origin', 'warranty_policy' và các đặc trưng mới:  ‘price’ -> ‘price_range’, ‘engine_capacity’ -> ‘weight_class’  
 Phần số: sử dụng các đặc trưng: 'price', 'mileage_km', 'min_price', 'max_price', 'registration_year', bike_type', 'engine_capacity', 'age', 'brand_meanprice'.
                  ''')
     st.write('Kết quả độ tương đồng trung bình sau khi cải thiện')
-    st.image('sim_score_image.jpg')
+    st.image('sim_score_compare.jpg')
 
 
     yellow_pad_header('Mô hình phân khúc xe máy')
