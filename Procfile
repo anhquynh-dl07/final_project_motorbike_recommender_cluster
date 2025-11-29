@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlit run project2_git_4.py

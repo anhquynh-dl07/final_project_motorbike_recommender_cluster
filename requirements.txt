@@ -1,0 +1,11 @@
+joblib==1.5.2
+matplotlib==3.10.7
+numpy==2.2.6
+pandas==2.3.3
+plotly==6.5.0
+pytz==2025.2
+scikit-learn==1.7.2
+scipy==1.15.3
+seaborn==0.13.2
+streamlit==1.51.0
+underthesea==8.3.0
