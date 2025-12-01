@@ -1,4 +1,4 @@
-# Hệ thống gợi ý xe máy tương tự và phân cụm xe máy
+# Hệ thống gợi ý xe máy tương tự và phân cụm xe máy 
 
 ## **Giới thiệu mục tiêu**
 
@@ -8,29 +8,41 @@ Dữ liệu về xe máy được thu thập trên nền tảng Chợ Tốt, tr�
 * Xây dựng hệ thống gợi ý xe máy tương tự bằng thư viện Gensim và Cosine similarity
 * Phân khúc thị trường bằng thuật toán phân cụm trên 2 môi trường (sklearn và pyspark).
 
-## **Cấu trúc dự án**
-├── cau_1_gensim_cosine.ipynb            # Hệ thống gợi ý xe máy  
-├── cau_2_cluster_pyspark.ipynb          # Phân khúc bằng thuật phân cụm trên pyspark  
-├── cau_2_cluster_python.ipynb           # Phân khúc bằng thuật phân cụm trên sklearn  
-├── data                                 # dữ liệu được cung cấp  
-│   ├── data_motobikes.xlsx  
-│   ├── Mô tả bộ dữ liệu Chợ Tốt.docx  
-│   └── Mô tả bộ dữ liệu Chợ Tốt.pdf  
-├── files  
-│   ├── emojicon.txt  
-│   ├── english-vnmese.txt  
-│   ├── teencode.txt  
-│   ├── vietnamese-stopwords.txt  
-│   └── wrong-word.txt  
-├── GUI                                 # giao diện cho người dùng cuối  
-│   ├── data_motobikes.xlsx  
-│   ├── project2_git_4.py               # file app streamlit giao diện cho người dùng  
-│   ├── README.md                       # file hướng dẫn  
-│   ├── requirements.txt                # các gói thư viện cần có  
-│   └── [các file bổ trợ khác]  
-├── README.md                           # hướng dẫn
-└── slide  
-    └── Final project_Bike Recommendation System and Market Segment.pptx
+## **Thành phần app giao diện**
+├── age_bin_stats.png  
+├── brand_grouped_count.png  
+├── build_model_price_anomaly_detection.py  
+├── data_motobikes.xlsx  
+├── data_motobikes_realtime.xlsx  
+├── function_preprocessing_motorbike.py  
+├── if_model.pkl
+├── imputer.pkl
+├── kmeans.pkl
+├── kmeans_model.pkl
+├── lof_model.pkl
+├── market_segment_clustering.py
+├── mau_xe_may.xlsx
+├── mileage_bin_stats.png
+├── motobike_price_prediction_model.pkl
+├── onehot_encoder.pkl
+├── outliers_detected.csv
+├── pca.pkl
+├── pca_clusters.png
+├── price_bin_stats.png
+├── Procfile
+├── project2_git_4.py  # file app chính
+├── README.md          # hướng dẫn
+├── requirements.txt   # các thư viện cần thiết
+├── runtime.txt  
+├── scaler.pkl  
+├── setup.sh  
+├── silhoutte_sklearn.png  
+├── sim_score_compare.jpg  
+├── teencode.txt  
+├── text_resources.py  
+├── tfidf_matrix.pkl  
+├── tfidf_vectorizer.pkl  
+└── unsup_model.py
 
 ## **Dữ liệu**
 
@@ -125,7 +137,7 @@ Hệ thống sử dụng kết hợp đặc trưng văn bản và đặc trưng 
 - Lấy ra 5 xe phù hợp nhất theo điểm tương đồng
 
 ## **Market segmentation by Clustering (phân khúc xe máy bằng thuật toán phân cụm)**
-### 1. Môi trường machine learning truyền thống (sklearn)
+### Môi trường machine learning truyền thống (sklearn)
 #### Import thư viện
 Import/ tải các thư viện cần thiết
 
